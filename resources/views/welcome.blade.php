@@ -48,6 +48,14 @@
                     src="{{ asset('backend/media/svg/brand-logos/google-icon.svg') }}"/>
                 <p style="color: #fff;">Continue with Google</p>
             </a>
+            <a href="{{route('github.login')}}" style="display: flex; gap:5px; text-align:center; justify-content:center;border: 1px solid #fff;"
+            class="btn btn-flex flex-center btn-light btn-lg w-100">
+                    <p style="color: #fff;">Continue with Github</p>
+            </a>
+            <a href="{{route('linkedin.login')}}" style="display: flex; gap:5px; text-align:center; justify-content:center;border: 1px solid #fff;"
+            class="btn btn-flex flex-center btn-light btn-lg w-100">
+                    <p style="color: #fff;">Continue with LinkedIn</p>
+            </a>
             <a href="" style="display: flex; gap:5px; text-align:center; justify-content:center;border: 1px solid #fff;"
             class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                 <img alt="Logo" class="h-20px me-3"
@@ -62,14 +70,7 @@
                     alt="Logo" class="theme-dark-show h-20px me-3" />
                 <p style="color: #fff;">Continue with Apple</p>
             </a>
-            <a href="{{route('github.login')}}" style="display: flex; gap:5px; text-align:center; justify-content:center;border: 1px solid #fff;"
-            class="btn btn-flex flex-center btn-light btn-lg w-100">
-                    <p style="color: #fff;">Continue with Github</p>
-            </a>
-            <a href="{{route('linkedin.login')}}" style="display: flex; gap:5px; text-align:center; justify-content:center;border: 1px solid #fff;"
-            class="btn btn-flex flex-center btn-light btn-lg w-100">
-                    <p style="color: #fff;">Continue with LinkedIn</p>
-            </a>
+
         </section>
 
     </main>
