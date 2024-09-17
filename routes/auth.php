@@ -12,9 +12,17 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
-// google login routes
+// google Login  Routes
 Route::get('/auth/google', [GoogleLoginController::class, 'loginWithGoogle'])->name('google.login');
 Route::any('/auth/google/callback', [GoogleLoginController::class, 'callbackFromGoogle'])->name('google.callback');
+
+// Github Login Routes
+Route::get('/auth/github', [GoogleLoginController::class, 'loginWithGithub'])->name('github.login');
+Route::any('/auth/github/callback', [GoogleLoginController::class, 'callbackFromGithub'])->name('github.callback');
+
+
+Route::get('/auth/linkedin', [GoogleLoginController::class, 'loginWithLinkedin'])->name('linkedin.login');
+Route::any('/auth/linkedin/callback', [GoogleLoginController::class, 'callbackFromLinkedin'])->name('linkedin.callback');
 
 
 Route::middleware('guest')->group(function () {

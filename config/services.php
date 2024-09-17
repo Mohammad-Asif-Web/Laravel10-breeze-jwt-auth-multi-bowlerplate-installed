@@ -20,6 +20,18 @@ return [
         'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
     ],
 
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET_ID'),
+        'redirect' => 'http://127.0.0.1:8000/auth/github/callback',
+    ],
+
+    'linkedin-openid' => [
+        'client_id' => env('LINKEDIN_CLIENT_ID'),
+        'client_secret' => env('LINKEDIN_CLIENT_SECRET_ID'),
+        'redirect' => 'http://127.0.0.1:8000/auth/linkedin/callback',
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
