@@ -90,7 +90,7 @@ class AuthController extends Controller
             return $this->errorResponse('incorrect credentials, please try again.', null, 403);
         }
 
-        $user = auth()->user();
+        $user = auth()->guard('api')->user();
 
         // $otp = 0;
         // Check if the user is verified
