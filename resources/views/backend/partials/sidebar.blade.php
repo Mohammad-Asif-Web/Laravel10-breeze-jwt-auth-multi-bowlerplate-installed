@@ -51,12 +51,9 @@ data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
                     <span class="fw-bold text-muted text-uppercase fs-7">Crafted</span>
                 </div>
             </div>
-            {{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion
-                {{ request()->routeIs('admin.qr.index')
-                || request()->routeIs('admin.active.qr.index')
-                || request()->routeIs('admin.deactive.qr.index')
-                ? 'show' : '' }}"> --}}
-            <div data-kt-menu-trigger="click" class="menu-item menu-accordion ">
+            <div data-kt-menu-trigger="click" class="menu-item menu-accordion
+                {{ request()->routeIs('admin.qr.index') ? 'show' : '' }}">
+            {{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion "> --}}
                 <span class="menu-link">
                     <span class="menu-icon">
                         <i class="ki-duotone ki-scan-barcode fs-2">
@@ -75,8 +72,8 @@ data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
                 </span>
                 <div class="menu-sub menu-sub-accordion">
                     <div class="menu-item">
-                        {{-- <a class="menu-link {{ request()->routeIs('admin.qr.index') ? 'active' : '' }}" href="{{ route('admin.qr.index') }}"> --}}
-                        <a class="menu-link      ">
+                        <a class="menu-link {{ request()->routeIs('admin.qr.index') ? 'active' : '' }}" href="{{ route('admin.qr.index') }}">
+                        {{-- <a class="menu-link      "> --}}
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>

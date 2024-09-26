@@ -51,10 +51,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/qr/list', [BarcodeController::class, 'index'])->name('admin.qr.index');
     Route::get('/admin/active/qr/list', [BarcodeController::class, 'ActiveCodes'])->name('admin.active.qr.index');
     Route::get('/admin/de-active/qr/list', [BarcodeController::class, 'Deactivecodes'])->name('admin.deactive.qr.index');
-    Route::post('/admin/qr/generate', [BarcodeController::class, 'generate'])->name('generate.qr.code');
-    Route::delete('/admin/qr/{id}', [BarcodeController::class, 'destroy'])->name('barcodes.destroy');
-    Route::get('/admin/qr/list/search', [BarcodeController::class, 'searchCode'])->name('barcodes.search');
-    Route::get('/admin/qr/{id}/print_pdf/', [BarcodeController::class, 'printPdf'])->name('barcodes.print.pdf');
+    Route::post('/admin/qr/generate', [BarcodeController::class, 'generate'])->name('admin.generate.qr.code');
+    Route::get('/admin/qr/list/search', [BarcodeController::class, 'searchCode'])->name('admin.barcodes.search');
+    Route::get('/admin/qr/{id}/print_pdf/', [BarcodeController::class, 'printPdf'])->name('admin.barcodes.print.pdf');
+
+    // Route::delete('/admin/qr/{id}', [BarcodeController::class, 'destroy'])->name('barcodes.destroy');
+
+    // bulk Delete for multiple and singel item
+    Route::delete('/admin/qr/bulk-delete', [BarcodeController::class, 'bulkDelete'])->name('admin.barcodes.bulkDelete');
+
 
 
 });

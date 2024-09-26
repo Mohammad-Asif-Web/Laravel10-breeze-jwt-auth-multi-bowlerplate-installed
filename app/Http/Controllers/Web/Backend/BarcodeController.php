@@ -7,10 +7,11 @@ use App\Models\Barcode;
 use App\Models\Profile;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class BarcodeController extends Controller
 {
@@ -78,22 +79,22 @@ class BarcodeController extends Controller
 
     }
 
-    public function destroy($id)
-    {
-        try {
-            // Find the barcode by ID
-            $barcode = Barcode::findOrFail($id);
+    // public function destroy($id)
+    // {
+    //     try {
+    //         // Find the barcode by ID
+    //         $barcode = Barcode::findOrFail($id);
 
-            // Delete the barcode
-            $barcode->delete();
+    //         // Delete the barcode
+    //         $barcode->delete();
 
-            // You can redirect back with a success message
-            return redirect()->back()->with('success', 'Barcode deleted successfully.');
-        } catch (\Exception $e) {
-            // Handle any errors that may occur
-            return redirect()->back()->with('error', 'Error occurred while deleting the barcode.');
-        }
-    }
+    //         // You can redirect back with a success message
+    //         return redirect()->back()->with('success', 'Barcode deleted successfully.');
+    //     } catch (\Exception $e) {
+    //         // Handle any errors that may occur
+    //         return redirect()->back()->with('error', 'Error occurred while deleting the barcode.');
+    //     }
+    // }
 
     public function printPdf($id)
     {
@@ -118,6 +119,21 @@ class BarcodeController extends Controller
 
         // Pass the search term to the view for maintaining the search state
         return view('backend.layouts.qr-code.qr-code', compact('barcodes', 'search', 'usedQRCodes'));
+    }
+
+    // Bulk Delete Items
+    public function bulkDelete(Request $request)
+    {
+        $barcodeIds = $request->input('barcode_ids');
+        if (!$barcodeIds || count($barcodeIds) === 0) {
+            return redirect()->back()->with('error', 'No barcodes selected for deletion.');
+        }
+
+        DB::transaction(function () use ($barcodeIds) {
+            Barcode::whereIn('id', $barcodeIds)->delete();
+        });
+
+        return redirect()->back()->with('success', 'Selected barcodes have been deleted.');
     }
 
 
