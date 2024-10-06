@@ -60,6 +60,54 @@ class GoogleLoginController extends Controller
 
     }
 
+    // ====================================================
+    // ================ GOOGLE LOGIN START ================
+    // ====================================================
+    // google login start
+    final public function loginWithFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    final public function callbackFromFacebook()
+    {
+        try {
+            $user = Socialite::driver('facebook')->user();
+
+            // First its checking is user is exixts or not
+            $is_user = User::where('email', $user->getEmail())->first();
+            if(!$is_user){
+                 // If user not exist, it will create a user in User table
+                $saveUser = User::updateOrCreate(
+                    [
+                        'facebook_id' => $user->getId()
+                    ],
+                    [
+                        'name' => $user->getName(),
+                        'email' => $user->getEmail(),
+                        'password' => Hash::make($user->getName().'@'.$user->getId()),
+                    ]
+                );
+
+            } else{
+                // If user is exist, then it will update the existing user.
+                User::where('email', $user->getEmail())->update([
+                    'facebook_id' => $user->getId(),
+                ]);
+
+                $saveUser = User::where('email', $user->getEmail())->first();
+            }
+
+            Auth::loginUsingId($saveUser->id);
+            return redirect('/home');
+
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+    }
+
 
     // ====================================================
     // ================ GITHUB LOGIN START ================
@@ -159,7 +207,7 @@ class GoogleLoginController extends Controller
         }
 
     }
-    
+
 
 }
 

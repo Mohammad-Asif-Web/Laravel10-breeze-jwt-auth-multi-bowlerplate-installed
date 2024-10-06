@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('otp', 6)->nullable();
             $table->enum('status', [0, 1])->default(1)->comment('0 = De-Active, 1 = Active');
             $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
             $table->string('github_id')->nullable();
             $table->string('linkedin_id')->nullable();
             $table->rememberToken();

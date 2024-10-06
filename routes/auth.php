@@ -16,6 +16,10 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 Route::get('/auth/google', [GoogleLoginController::class, 'loginWithGoogle'])->name('google.login');
 Route::any('/auth/google/callback', [GoogleLoginController::class, 'callbackFromGoogle'])->name('google.callback');
 
+// Facebook Login Routes
+Route::get('/auth/facebook', [GoogleLoginController::class, 'loginWithFacebook'])->name('facebook.login');
+Route::any('/auth/facebook/callback', [GoogleLoginController::class, 'callbackFromFacebook'])->name('facebook.callback');
+
 // Github Login Routes
 Route::get('/auth/github', [GoogleLoginController::class, 'loginWithGithub'])->name('github.login');
 Route::any('/auth/github/callback', [GoogleLoginController::class, 'callbackFromGithub'])->name('github.callback');
